@@ -33,6 +33,7 @@ This document outlines how to handle local changes while keeping up with new mat
 ### Incorporating New Course Material
 When new material is posted upstream:
 
+**Option 1: Manual steps**
 1. **Update main branch**:
    ```
    git checkout main
@@ -52,7 +53,17 @@ When new material is posted upstream:
      git rebase --continue
      ```
 
-3. **Push your changes**:
+**Option 2: Automated script**
+Run the provided script from the repository root:
+```
+./workflow/update_from_upstream.sh
+```
+This script will:
+- Fetch and merge upstream changes into main
+- Push the updated main to your fork
+- Rebase your current branch (if not main) on the updated main
+
+3. **Push your changes** (if using manual steps):
    ```
    git push origin my-course-work
    ```
