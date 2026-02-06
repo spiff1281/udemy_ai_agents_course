@@ -81,9 +81,43 @@ git stash pop  # Restore your changes
 - Use branches for all your work to avoid conflicts with upstream updates
 - Commit frequently with descriptive messages
 - Pull updates regularly to stay current with course material
-- If you prefer working on main, stash changes before updating and pop after
+- If you work directly on main, stash changes before updating and pop after
+- **Never commit API keys or sensitive data** - use `.env` files and ensure they're in `.gitignore`
+- Set up your own API keys for services like OpenAI, Anthropic, etc.
 
-## Troubleshooting
+## Environment Setup
+Before running the labs, ensure you have the necessary API keys and environment set up:
+
+1. **Create a `.env` file** in the repository root (it's already gitignored):
+   ```
+   OPENAI_API_KEY=your_openai_key_here
+   ANTHROPIC_API_KEY=your_anthropic_key_here
+   # Add other API keys as needed for the course
+   ```
+
+2. **Install dependencies** for each section:
+   ```bash
+   # For Python projects
+   pip install -r requirements.txt
+   
+   # Or if using uv (check pyproject.toml)
+   uv sync
+   ```
+
+3. **Load environment variables** in your code:
+   ```python
+   from dotenv import load_dotenv
+   load_dotenv()
+   ```
+
+4. **Verify your setup** by running a simple test script from the course materials
+
+5. **Run diagnostics** if you encounter issues:
+   ```bash
+   python setup/diagnostics.py
+   ```
+
+6. **Check platform-specific setup guides** in the `setup/` folder for your operating system
 - **Merge conflicts**: Edit conflicting files, choose the correct version, then `git add` and `git rebase --continue`
 - **Lost commits**: Use `git reflog` to find lost commits and `git cherry-pick` to recover them
 - **Remote issues**: Check `git remote -v` to verify remote URLs
